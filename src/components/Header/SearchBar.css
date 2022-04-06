@@ -1,0 +1,59 @@
+.search-div{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+.search-div form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.search-div form input{
+    background-color: #060e18;
+    border: 1px solid #dadada;
+    
+    padding: 0.3rem;
+    width: 100%;
+    color: #ffffff;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+}
+.search-div input:focus{
+        outline: none;
+}
+
+.search-div input::placeholder{
+    color: #dadada;
+    font-weight: 600;
+}
+
+.search-div form svg{
+    top: 0.4rem;
+    position: absolute;
+    right: 0;
+ 
+ 
+}
+.search-div form select{
+    background-color: #060e18;
+    color: #ffffff;
+    outline: none !important;
+    border-right: none;
+}
+
+@media screen and (max-width: 530px) {
+    .search-div form svg{
+        top: 0.1rem;
+    }
+    .search-div{
+        width: 90%;
+    }
+    .search-div form{
+        width: 100% !important;
+    }
+    .search-div form input{
+        width: 100% !important;
+    }
+}

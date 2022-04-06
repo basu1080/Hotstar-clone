@@ -1,0 +1,10 @@
+.results {
+  background-color: #060e18 !important;
+  margin-top: 6rem;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  padding: calc(3.5vw + 5px);
+  display: block;
+}

@@ -1,0 +1,23 @@
+.login-success{
+    color: #ffffff;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    margin-block: auto;
+    width: 100%;
+    text-align: center;
+
+}
+
+.login-success svg{
+    align-self: center;
+    font-size: 4rem;
+    height: 4rem;
+    color: rgb(19, 143, 214);
+    padding: 0 !important;
+    margin: 0!important;
+
+}

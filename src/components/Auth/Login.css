@@ -1,0 +1,80 @@
+.login-form{
+    height: 30rem;
+    width: 27rem;
+    background-color: #203239;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    justify-content: space-around;
+
+}
+.login-form svg{
+    align-self: flex-end;
+    cursor: pointer;
+}
+.login-form form{
+    width: 70%;
+    height: 60%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.login-form form h4{
+    color: #dadada;
+}
+.login-form form input{
+    width: 90%;
+    background-color: #203239;
+    color: #ffffff;
+    border: none;
+    border-bottom: 3px solid #5463FF;
+}
+.login-form form input::placeholder{
+    color: #dadada;
+    font-size: 15px;
+}
+.login-form form input:focus{
+    outline: none;
+}
+.login-form form button{
+    width: 90%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    justify-content: center;
+}
+.login-form form button svg{
+    font-size: 11px  !important;
+
+    margin-left: 0.4rem;
+    margin-bottom: 0.5rem;
+    
+}
+.signup-btn{
+    color: #ffffff;
+    width: 70%;
+    align-self: center;
+    margin-top: 1rem;
+}
+.error-div{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(242, 57, 57);
+}
+.error{
+    border-bottom: 1px solid rgb(253, 21, 21) !important;
+}
+
+@media screen and (max-width: 530px) {
+    .login-form{
+        width: 85%;
+        margin-right: 3% !important;
+    }
+}

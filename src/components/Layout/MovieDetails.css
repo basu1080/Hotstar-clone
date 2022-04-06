@@ -1,0 +1,15 @@
+
+.movie-details h5{
+    margin: 0 !important;
+}
+.movie-details span{
+    margin: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.movie-details p{
+    text-align: left;
+    font-size: 9px !important;
+    margin: 0 !important;
+}

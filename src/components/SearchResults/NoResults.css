@@ -1,0 +1,12 @@
+.no-results{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    margin: 4rem auto;
+}
+.no-results img{
+    width: 250px;
+}

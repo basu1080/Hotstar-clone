@@ -1,0 +1,44 @@
+import React, {useState} from 'react'
+import './Movie.css'
+import { motion } from 'framer-motion'
+import MovieDetails from './MovieDetails'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { detailsSliceActions } from '../../store/DetailsSlice'
+const Movie = (props) => {
+ 
+    const [showDetails, setShowDetails] = useState(false)
+    const history = useHistory()
+    const dispatch = useDispatch()
+   
+    const info = {banner:false, movie:props.movie, series:props.series}
+    const showInfo = e => {
+        setShowDetails(true)
+    }
+  
+    const hideDetails = e => {
+        setShowDetails(false)
+    }
+    const viewDetail = e => {
+     dispatch(detailsSliceActions.viewDetails({id: props.movie.id, series: props.series}))
+        history.push(`/details/${props.movie.id}`)
+    }
+    
+  return (
+    <motion.div className='movie'
+    
+    whileHover={{scale: 1.3}}
+    transition={{duration: 0.2}}
+    onMouseOver={showInfo}
+    onMouseLeave={hideDetails}
+    onClick={viewDetail}
+    >
+        <img src={`https://image.tmdb.org/t/p/w500/${props.img}`} alt={'movie/series image'}/>
+        {showDetails && <MovieDetails banner={false} movie={props.movie} series={props.series}/>}
+        
+
+    </motion.div>
+  )
+}
+
+export default Movie

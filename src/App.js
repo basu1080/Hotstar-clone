@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import React, {useEffect} from 'react'
 import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import {Switch, Route} from 'react-router-dom'
+import DetailsPage from './pages/DetailsPage';
+import MoviesPage from './pages/MoviesPage';
+import SeriesPage from './pages/SeriesPage';
+import ResultsPage from './pages/ResultsPage';
+import PageNotFound from './pages/PageNotFound';
+
 
 function App() {
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/" exact>
+        <Home />
+        </Route>
+        <Route path="/movies" exact>
+          <MoviesPage />
+        </Route>
+        <Route path="/series">
+          <SeriesPage />
+        </Route>
+        <Route path="/details/:any">
+          <DetailsPage />
+        </Route>
+        <Route path="/search/:movie_series">
+          <ResultsPage />
+        </Route>
+        <Route path="*">
+          <PageNotFound />
+        </Route>
+        
+        
+      </Switch>
+      
     </div>
   );
 }

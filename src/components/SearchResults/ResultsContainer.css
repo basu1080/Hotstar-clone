@@ -1,0 +1,25 @@
+.results-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    width: 100%;
+ 
+
+}
+
+.results-grid .movie{
+    width: 13rem;
+    height: 10rem;
+}
+
+@media screen and (max-width: 530px) {
+   
+    .results-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .results-grid .movie{
+        width: 10rem;
+        height: 12rem;
+    }
+}

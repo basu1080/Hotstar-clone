@@ -1,0 +1,14 @@
+.movies-slider{
+    width: 95% !important;
+    height: auto;
+}
+
+.movies-slider .slick-list{
+    overflow: initial;
+}
+.movies-slider .slick-prev{
+    left: -2% !important
+}
+.movies-slider .slick-next{
+    right: 1% !important;
+}
