@@ -5,6 +5,7 @@ import MovieDetails from './MovieDetails'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { detailsSliceActions } from '../../store/DetailsSlice'
+import dummy from '../../Images/dummy.jpg'
 const Movie = (props) => {
  
     const [showDetails, setShowDetails] = useState(false)
@@ -24,6 +25,13 @@ const Movie = (props) => {
         history.push(`/details/${props.movie.id}`)
     }
     
+    let image;
+    if(props.img){
+      image=`https://image.tmdb.org/t/p/w500/${props.img}`
+    }
+    if(!props.img){
+      image=dummy
+    }
   return (
     <motion.div className='movie'
     
@@ -33,7 +41,7 @@ const Movie = (props) => {
     onMouseLeave={hideDetails}
     onClick={viewDetail}
     >
-        <img src={`https://image.tmdb.org/t/p/w500/${props.img}`} alt={'movie/series image'}/>
+        <img src={image} alt={'movie/series image'}/>
         {showDetails && <MovieDetails banner={false} movie={props.movie} series={props.series}/>}
         
 
