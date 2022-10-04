@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import "./Series.css";
 import { useSelector } from "react-redux";
 import ImageSlider from "../Home/ImageSlider";
@@ -6,22 +6,19 @@ import ImageSlider from "../Home/ImageSlider";
 import Login from "../Auth/Login";
 
 import SignUp from "../Auth/SignUp";
-import PopularSeries from "./PopularSeries";
-import RatedSeries from "./RatedSeries";
-import LatestSeries from './LatestSeries'
-import TrendingSeries from "./TrendingSeries";
-import SkeletonForBanner from '../UI/SkeletonForBanner'
+import SkeletonForBanner from "../UI/SkeletonForBanner";
 import useHttp from "../../hooks/useHttp";
+import { SeriesAPI } from "../API/Urls";
+import SeriesTemplate from "./SeriesTemplate";
 const Series = () => {
-  const [data, setData] = useState([]);
+ 
   const showModal = useSelector((state) => state.toggleForm.showModal);
   const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
 
-  const {loading, results, error, fetchRequest} = useHttp()
-
+  const { loading, results, error, fetchRequest } = useHttp();
 
   useEffect(() => {
-      fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL)
+    fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL);
   }, []);
 
   return (
@@ -32,24 +29,15 @@ const Series = () => {
           <SkeletonForBanner />
         </>
       ) : (
-        <>
-          {results.length > 0 && <ImageSlider movies={results} />}
-        </>
+        <>{results.length > 0 && <ImageSlider movies={results} />}</>
       )}
-      {data.length > 0 && <ImageSlider movies={data} />}
-      <div>
-          <TrendingSeries />
-      </div>
 
-      <div>
-          <LatestSeries />
-      </div>
-      <div>
-        <PopularSeries />
-      </div>
-      <div>
-        <RatedSeries />
-      </div>
+      {SeriesAPI.map((api) => (
+        <div>
+          {" "}
+          <SeriesTemplate key={api.id} url={api.url} text={api.text} />{" "}
+        </div>
+      ))}
 
       {showModal && (
         <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>

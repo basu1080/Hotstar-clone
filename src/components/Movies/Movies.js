@@ -1,52 +1,45 @@
-import React, {useState, useEffect} from 'react'
-import './Movies.css'
-import { useSelector } from 'react-redux'
-import ImageSlider from '../Home/ImageSlider'
-import Trending from '../Trending/Trending'
-import Latest from './Latest'
-import Popular from './Popular'
-import TopRated from './TopRated'
-import Login from '../Auth/Login'
+import React, {  useEffect } from "react";
+import "./Movies.css";
+import { useSelector } from "react-redux";
+import ImageSlider from "../Home/ImageSlider";
 
-import SignUp from '../Auth/SignUp'
+import Login from "../Auth/Login";
+import useHttp from "../../hooks/useHttp";
+import SkeletonForBanner from "../UI/SkeletonForBanner";
+import { MoviesAPI } from "../API/Urls";
+
+import SignUp from "../Auth/SignUp";
+import Template from "./Template";
 const Movies = () => {
-    const [data, setData] = useState([])
-    const showModal = useSelector(state => state.toggleForm.showModal)
-  const toggleForm = useSelector(state => state.toggleForm.toggleForm)
 
-  
-  const baseapi =
-  "https://api.themoviedb.org/3/movie/now_playing?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US";
+  const showModal = useSelector((state) => state.toggleForm.showModal);
+  const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
+  const { loading, results, error, fetchRequest } = useHttp();
 
-useEffect(() => {
-  fetch(`${baseapi}&page=${1}`)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      setData(data.results);
-    });
-}, []);
+  useEffect(() => {
+    fetchRequest(process.env.REACT_APP_BANNER_MOVIES_URL);
+  }, []);
 
   return (
-    <div className='movies'>
-         {data.length>0 && <ImageSlider movies={data}/>}
-      
+    <div className="movies">
+      {loading ? (
+        <>
+          <SkeletonForBanner />
+        </>
+      ) : (
+        <>{results.length > 0 && <ImageSlider movies={results} />}</>
+      )}
+      {MoviesAPI.map((api) => (
         <div>
-          <Latest />
+          <Template key={api.id} url={api.url} text={api.text} />{" "}
         </div>
-        <div>
-          <Popular />
-        </div>
-        <div>
-          <TopRated />
-        </div>
-       
-        {showModal && <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>}
-      
-        
-    </div>
-  )
-}
+      ))}
 
-export default Movies
+      {showModal && (
+        <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>
+      )}
+    </div>
+  );
+};
+
+export default Movies;

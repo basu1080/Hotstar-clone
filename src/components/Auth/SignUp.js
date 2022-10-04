@@ -28,10 +28,10 @@ const SignUp = () => {
   const [statusError, setStatusError] = useState('')
   
   useEffect(() => {
-    if(authState.status==='error'){
+    if(authState==='error'){
       setStatusError(true)
     }
-    if(authState.status==='completed'){
+    if(authState==='completed'){
       dispatch(formToggleSliceActions.toggleLoginForm())
     }
   }, [authState])

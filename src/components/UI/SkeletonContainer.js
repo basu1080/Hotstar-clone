@@ -25,9 +25,11 @@ const SkeletonContainer = () => {
 
   useLayoutEffect(() => {
     window.addEventListener("resize", updateContainer);
+    return () => {
+      window.removeEventListener("resize",() => {})
+    }
   }, []);
 
-  console.log(width);
 
   return (
     <div className="skeletonContainer">
