@@ -5,10 +5,10 @@ import useHttp from "../../hooks/useHttp";
 import SkeletonContainer from "../UI/SkeletonContainer";
 
 const Latest = () => {
-  const [data, setData] = useState([]);
+  
   const { loading, results, error, fetchRequest } = useHttp();
 
-  console.log(loading, results);
+
 
   useEffect(() => {
     fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL);

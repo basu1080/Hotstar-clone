@@ -1,25 +1,64 @@
-.skeletonContainer{
-    width: 95%;
-    height: 15rem;
-    background-color: rgb(212, 202, 202);
-    border: 1px solid rgb(212, 202, 202);
-    border-radius: 0.2rem;
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem;
+.skeletonContainer {
+  width: 95%;
+  height: 15rem;
+  background-color: rgb(212, 202, 202);
+  border: 1px solid rgb(212, 202, 202);
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
 }
-.skeletonContainer div{
-    min-width: 12rem;
-    max-width: 40% !important;
-    height: 14rem;
-    background-color: rgb(176, 163, 163);
-    border-radius: 0.2rem;
-   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;;
+.bannerConntainer {
+  width: 95%;
+  height: 15rem;
+  background-color: rgb(212, 202, 202);
+  border: 1px solid rgb(212, 202, 202);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+}
+.banner {
+  width: 100% !important;
+  height: 90%;
+  background-color: rgb(176, 163, 163);
+  border-radius: 0.2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
 }
 
+.skeleton {
+  min-width: 12rem;
+  max-width: 40% !important;
+  height: 14rem;
+  background-color: rgb(176, 163, 163);
+  border-radius: 0.2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative !important;
+}
+
+.wave {
+  position: absolute !important;
+
+  background-color: rgb(223, 216, 216)!important;
+  z-index: 2 !important;
+  opacity: 0.6 !important;
+
+  animation: wave 0.7s ease-in 3  !important;
+
+}
 
 @media screen and (max-width: 560px) {
-    .skeletonContainer div{
-        width: 9rem;
-    }
+  .skeletonContainer div {
+    width: 9rem;
+  }
+}
+
+@keyframes wave {
+  0% {
+    width: 100%;
+    height: 0;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+  }
 }

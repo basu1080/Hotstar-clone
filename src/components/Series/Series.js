@@ -10,26 +10,32 @@ import PopularSeries from "./PopularSeries";
 import RatedSeries from "./RatedSeries";
 import LatestSeries from './LatestSeries'
 import TrendingSeries from "./TrendingSeries";
+import SkeletonForBanner from '../UI/SkeletonForBanner'
+import useHttp from "../../hooks/useHttp";
 const Series = () => {
   const [data, setData] = useState([]);
   const showModal = useSelector((state) => state.toggleForm.showModal);
   const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
 
-  const baseapi =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US";
+  const {loading, results, error, fetchRequest} = useHttp()
+
 
   useEffect(() => {
-    fetch(`${baseapi}&page=${1}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setData(data.results);
-      });
+      fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL)
   }, []);
 
   return (
     <div className="series">
+      {loading ? (
+        <>
+          {" "}
+          <SkeletonForBanner />
+        </>
+      ) : (
+        <>
+          {results.length > 0 && <ImageSlider movies={results} />}
+        </>
+      )}
       {data.length > 0 && <ImageSlider movies={data} />}
       <div>
           <TrendingSeries />

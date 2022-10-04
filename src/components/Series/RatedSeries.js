@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import MoviesContainer from '../Layout/MoviesContainer';
 import Wrapper from '../Layout/Wrapper';
-
+import SkeletonContainer from '../UI/SkeletonContainer';
+import useHttp from '../../hooks/useHttp';
 const RatedSeries = () => {
-    const [data, setData] = useState([])
-    const baseapi = `https://api.themoviedb.org/3/tv/top_rated?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US`
+   
+  const { loading, results, error, fetchRequest } = useHttp();
 
-    useEffect(() => {
-            fetch(`${baseapi}&page=${1}`)
-            .then(res => {
-               return res.json()
-            })
-            .then(data => {
-                setData(data.results)
-            })
-           
-    },[])
- 
-    
+
+
+  useEffect(() => {
+    fetchRequest(process.env.REACT_APP_RATED_SERIES_URL);
+  }, []);
   return (
     <Wrapper>
-    <h4>{`Top Rated Shows`}</h4>
-    {data.length>0 && <MoviesContainer items={data} series={true}/>}
-  
-</Wrapper>
-  )
+      {loading ? (
+        <>
+         
+          <SkeletonContainer />
+        </>
+      ) : (
+        <>
+    
+          <h4>{`Top Rated series`}</h4>
+          {results.length > 0 && (
+            <MoviesContainer items={results} series={true} />
+          )}
+        </>
+      )}
+    </Wrapper>
+  );
 }
 
 export default RatedSeries

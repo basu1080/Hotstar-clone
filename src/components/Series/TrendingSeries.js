@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import MoviesContainer from '../Layout/MoviesContainer';
-import Wrapper from '../Layout/Wrapper';
-
+import React, { useEffect, useState } from "react";
+import MoviesContainer from "../Layout/MoviesContainer";
+import Wrapper from "../Layout/Wrapper";
+import SkeletonContainer from "../UI/SkeletonContainer";
+import useHttp from "../../hooks/useHttp";
 const TrendingSeries = () => {
-    const [data, setData] = useState([])
-   
-    const baseapi = `https://api.themoviedb.org/3/tv/on_the_air?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US&page=1`
-    
-   
-    useEffect(() => {
-            fetch(`${baseapi}&page=${1}`)
-            .then(res => {
-               return res.json()
-            })
-            .then(data => {
-                setData(data.results)
-            })
-           
-    },[])
- 
-    
+  const { loading, results, error, fetchRequest } = useHttp();
+
+  useEffect(() => {
+    fetchRequest(process.env.REACT_APP_RATED_SERIES_URL);
+  }, []);
   return (
     <Wrapper>
-    <h4>{`Trending Shows`}</h4>
-    {data.length>0 && <MoviesContainer items={data} series={true}/>}
-  
-</Wrapper>
-  )
-}
+      {loading ? (
+        <>
+          <SkeletonContainer />
+        </>
+      ) : (
+        <>
+          <h4>{`Trending series`}</h4>
+          {results.length > 0 && (
+            <MoviesContainer items={results} series={true} />
+          )}
+        </>
+      )}
+    </Wrapper>
+  );
+};
 
-export default TrendingSeries
-
-
-
+export default TrendingSeries;
