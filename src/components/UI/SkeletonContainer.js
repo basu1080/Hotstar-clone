@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import "./SkeletonContainer.css";
 const SkeletonContainer = () => {
-  let screenWidth = window.screen.availWidth;
+ 
 
   const [width, setWidth] = useState(window.screen.availWidth);
   let number = 1;

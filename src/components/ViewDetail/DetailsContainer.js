@@ -6,8 +6,8 @@ const DetailsContainer = (props) => {
   return (
     <div>
         <div className='poster'>
-            <MovieDetails movie={props.movie} series={props.series} banner={true}/>
-            <img src={`https://image.tmdb.org/t/p/original/${props.movie.backdrop_path}`}/>
+            <MovieDetails movie={props.movie} series={props.series} banner={true} />
+            <img src={`https://image.tmdb.org/t/p/original/${props.movie.backdrop_path}`} alt="movie.png"/>
         </div>
     </div>
   )

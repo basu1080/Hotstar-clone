@@ -1,36 +1,11 @@
-import React, { useState, useEffect } from "react";
-import MoviesContainer from "../Layout/MoviesContainer";
-import Wrapper from "../Layout/Wrapper";
-import useHttp from "../../hooks/useHttp";
-import SkeletonContainer from "../UI/SkeletonContainer";
+import React from "react";
+import Template from './Template'
 
 const Latest = () => {
-  
-  const { loading, results, error, fetchRequest } = useHttp();
-
-
-
-  useEffect(() => {
-    fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL);
-  }, []);
+ 
   return (
-    <Wrapper>
-      {loading ? (
-        <>
-          {" "}
-          <SkeletonContainer />{" "}
-        </>
-      ) : (
-        <>
-          {" "}
-          <h4>{`Latest & Trending Movies`}</h4>
-          {results.length > 0 && (
-            <MoviesContainer items={results} series={false} />
-          )}{" "}
-        </>
-      )}
-    </Wrapper>
-  );
-};
+    <Template url={process.env.REACT_APP_NOW_PLAYING_URL} text={"Latest and Trending movies"}/>
+  )
+}
 
 export default Latest;

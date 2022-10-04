@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import MoviesContainer from '../Layout/MoviesContainer';
-import Wrapper from '../Layout/Wrapper';
-import SkeletonContainer from '../UI/SkeletonContainer';
-import useHttp from '../../hooks/useHttp';
+import React from "react";
+import SeriesTemplate from "./SeriesTemplate";
 const RatedSeries = () => {
-   
-  const { loading, results, error, fetchRequest } = useHttp();
-
-
-
-  useEffect(() => {
-    fetchRequest(process.env.REACT_APP_RATED_SERIES_URL);
-  }, []);
   return (
-    <Wrapper>
-      {loading ? (
-        <>
-         
-          <SkeletonContainer />
-        </>
-      ) : (
-        <>
-    
-          <h4>{`Top Rated series`}</h4>
-          {results.length > 0 && (
-            <MoviesContainer items={results} series={true} />
-          )}
-        </>
-      )}
-    </Wrapper>
+    <SeriesTemplate
+      url={process.env.REACT_APP_RATED_SERIES_URL}
+      text="Top Rated"
+    />
   );
-}
+};
 
-export default RatedSeries
+export default RatedSeries;
