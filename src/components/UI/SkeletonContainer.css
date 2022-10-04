@@ -1,0 +1,25 @@
+.skeletonContainer{
+    width: 95%;
+    height: 15rem;
+    background-color: rgb(212, 202, 202);
+    border: 1px solid rgb(212, 202, 202);
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+.skeletonContainer div{
+    min-width: 12rem;
+    max-width: 40% !important;
+    height: 14rem;
+    background-color: rgb(176, 163, 163);
+    border-radius: 0.2rem;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;;
+}
+
+
+@media screen and (max-width: 560px) {
+    .skeletonContainer div{
+        width: 9rem;
+    }
+}

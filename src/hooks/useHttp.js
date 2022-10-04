@@ -1,24 +1,30 @@
 import { useState } from "react";
-
+import axios from "axios";
 function useHttp(requestFunction, reqType) {
-  const [authState, setAuthState] = useState({});
 
-  const sendRequest = async function (requestData) {
-    const responseData = await requestFunction(requestData);
+const [loading, setLoading] = useState(false)
+const [results, setResults] = useState([])
+const [error, setError] = useState('')
+
+const fetchRequest = async(url) => {
+
+  try{
+    console.log(url)
+    setLoading(true)
+      const response = await axios.get(url)
+
+      setResults(response.data.results)
+      setLoading(false)
     
-    if(responseData.error){
-      setAuthState({status: 'error', data: responseData.error.message});
-    }
-    else{
-      setAuthState({ status: "completed", data: responseData });
-      
-    }
-      
-  
+  }
+  catch(err){
+      console.log(err)
+
+  }
 }
 
+return {loading, results, error, fetchRequest}
 
-  return { sendRequest, authState};
 }
 
 export default useHttp;

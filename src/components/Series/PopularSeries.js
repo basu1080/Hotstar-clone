@@ -17,7 +17,6 @@ const PopularSeries = () => {
            
     },[])
  
-    console.log(data)
     
   return (
     <Wrapper>

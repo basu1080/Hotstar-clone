@@ -1,25 +1,32 @@
-import React, {useEffect, useState} from 'react'
-import MoviesContainer from '../Layout/MoviesContainer';
-import Wrapper from '../Layout/Wrapper';
+import React, { useEffect, useState } from "react";
+import MoviesContainer from "../Layout/MoviesContainer";
+import Wrapper from "../Layout/Wrapper";
+import useHttp from "../../hooks/useHttp";
+import SkeletonContainer from "../UI/SkeletonContainer";
 
 const Popular = () => {
-    const [data, setData] = useState([])
-    const baseapi = `https://api.themoviedb.org/3/movie/popular?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US`
-    useEffect(() => {
-        fetch(`${baseapi}&page=${3}`)
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            setData(data.results);
-          });
-      }, []);
+  const { loading, results, error, fetchRequest } = useHttp();
+
+  console.log(results);
+  useEffect(() => {
+    fetchRequest(process.env.REACT_APP_POPULAR_MOVIES_URL);
+  }, []);
   return (
     <Wrapper>
-        <h4>{`Popular Movies`}</h4>
-        {data.length>0 && <MoviesContainer items={data} series={false}/>}
+      {loading ? (
+        <>
+          <SkeletonContainer />
+        </>
+      ) : (
+        <>
+          <h4>{`Popular Movies`}</h4>
+          {results.length > 0 && (
+            <MoviesContainer items={results} series={false} />
+          )}
+        </>
+      )}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Popular
+export default Popular;

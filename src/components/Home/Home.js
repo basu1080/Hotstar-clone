@@ -11,31 +11,29 @@ import LatestSeries from '../Series/LatestSeries'
 import TrendingSeries from '../Series/TrendingSeries'
 import Login from '../Auth/Login'
 import SignUp from '../Auth/SignUp'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { getFetchMovies } from '../../store/Slices/MoviesSlice'
 
 
 const Home = () => {
   const [data, setData] = useState([])
  const showModal = useSelector(state => state.toggleForm.showModal)
+ const dispatch = useDispatch()
   const toggleForm = useSelector(state => state.toggleForm.toggleForm)
+
+  const movies = useSelector((state) => state.movies)
+
+
  
-  const baseapi =
-  "https://api.themoviedb.org/3/movie/now_playing?api_key=5b43d1ebe66750ccefbad667bde21805&language=en-US";
+
 
 useEffect(() => {
-  fetch(`${baseapi}&page=${1}`)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      setData(data.results);
-    });
-}, []);
+  dispatch(getFetchMovies(process.env.REACT_APP_NOW_PLAYING_URL))
+}, [])
 
   return (
     <div className='home'>
-      {data.length>0 && <ImageSlider movies={data}/>}
+      {movies.movies.length>0 && <ImageSlider movies={movies.movies}/>}
       <div>
         <Trending />
       </div>

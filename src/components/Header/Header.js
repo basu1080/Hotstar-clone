@@ -34,7 +34,7 @@ const Header = () => {
     history.push("/");
   };
   const authStatus = useSelector((state) => state.authData.authState)
-  console.log(authStatus)
+
   return (
     <div className="header">
       <div className="nav-list">
