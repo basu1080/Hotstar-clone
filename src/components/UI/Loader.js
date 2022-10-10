@@ -3,14 +3,15 @@ import { TailSpin } from 'react-loader-spinner'
 import Modal from './Modal'
 const Loader = () => {
   return (
-      <Modal>
+     
     <TailSpin
-    height="100"
-    width="100"
+    height="50"
+    width="50"
     color='rgb(19, 143, 214)'
     ariaLabel='loading'
+    
   />
-  </Modal>  
+
   )
 }
 

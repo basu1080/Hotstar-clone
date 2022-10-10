@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Series.css";
 import { useSelector } from "react-redux";
 import ImageSlider from "../Home/ImageSlider";
@@ -6,14 +6,14 @@ import ImageSlider from "../Home/ImageSlider";
 import Login from "../Auth/Login";
 
 import SignUp from "../Auth/SignUp";
+
 import SkeletonForBanner from "../UI/SkeletonForBanner";
 import useHttp from "../../hooks/useHttp";
 import { SeriesAPI } from "../API/Urls";
 import SeriesTemplate from "./SeriesTemplate";
 const Series = () => {
- 
-  const showModal = useSelector((state) => state.toggleForm.showModal);
   const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
+  const showLogin = useSelector((state) => state.toggleForm.showLogin);
 
   const { loading, results, error, fetchRequest } = useHttp();
 
@@ -38,10 +38,7 @@ const Series = () => {
           <SeriesTemplate key={api.id} url={api.url} text={api.text} />{" "}
         </div>
       ))}
-
-      {showModal && (
-        <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>
-      )}
+      {toggleForm && <> {showLogin ? <Login /> : <SignUp />}</>}
     </div>
   );
 };

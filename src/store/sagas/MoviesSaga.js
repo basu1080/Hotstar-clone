@@ -11,7 +11,7 @@ function* workGetMoviesFetch(action){
 }
 
 function* moviesSaga(){
-    console.log('movies')
+    
     yield takeEvery('movies/getFetchMovies', workGetMoviesFetch);
 }
 

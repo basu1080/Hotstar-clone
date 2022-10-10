@@ -65,8 +65,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     color: rgb(242, 57, 57);
+}
+.loading{
+   
+    margin: 2rem auto !important;
 }
 .error{
     border-bottom: 1px solid rgb(253, 21, 21) !important;

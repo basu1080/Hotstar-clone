@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Movies.css";
 import { useSelector } from "react-redux";
 import ImageSlider from "../Home/ImageSlider";
@@ -9,10 +9,11 @@ import SkeletonForBanner from "../UI/SkeletonForBanner";
 import { MoviesAPI } from "../API/Urls";
 
 import SignUp from "../Auth/SignUp";
+
 import Template from "./Template";
 const Movies = () => {
-
-  const showModal = useSelector((state) => state.toggleForm.showModal);
+  
+  const showLogin = useSelector((state) => state.toggleForm.showLogin);
   const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
   const { loading, results, error, fetchRequest } = useHttp();
 
@@ -31,13 +32,11 @@ const Movies = () => {
       )}
       {MoviesAPI.map((api) => (
         <div>
-          <Template key={api.id} url={api.url} text={api.text} />{" "}
+          <Template key={api.id} url={api.url} text={api.text} />
         </div>
       ))}
 
-      {showModal && (
-        <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>
-      )}
+      {toggleForm && <> {showLogin ? <Login /> : <SignUp />}</>}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 
 import "./Home.css";
 
@@ -14,8 +14,9 @@ import { MoviesAPI, SeriesAPI } from "../API/Urls";
 import Template from "../Movies/Template";
 import SeriesTemplate from "../Series/SeriesTemplate";
 
+
 const Home = () => {
-  const showModal = useSelector((state) => state.toggleForm.showModal);
+  const showLogin = useSelector((state) => state.toggleForm.showLogin);
   const dispatch = useDispatch();
   const toggleForm = useSelector((state) => state.toggleForm.toggleForm);
 
@@ -49,9 +50,7 @@ const Home = () => {
           <SeriesTemplate key={api.id} url={api.url} text={api.text} />{" "}
         </div>
       ))}
-      {showModal && (
-        <React.Fragment>{!toggleForm ? <Login /> : <SignUp />}</React.Fragment>
-      )}
+      {toggleForm && <> {showLogin ? <Login /> : <SignUp />}</>}
     </div>
   );
 };
