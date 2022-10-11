@@ -15,6 +15,7 @@ function useHttp(requestFunction, reqType) {
         setResults(response.data.results);
         setLoading(false);
       } catch (err) {
+        setLoading(false);
         setError(err);
       }
     };

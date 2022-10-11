@@ -26,28 +26,30 @@ const Home = () => {
     dispatch(getFetchMovies(process.env.REACT_APP_NOW_PLAYING_URL));
   }, []);
 
+
+console.log(toggleForm)
   return (
     <div className="home">
       {movies.loading ? (
         <>
-          {" "}
+       
           <SkeletonForBanner />
         </>
       ) : (
         <>
-          {movies.movies.length > 0 && <ImageSlider movies={movies.movies} />}{" "}
+          {movies.movies.length > 0 && <ImageSlider movies={movies.movies} />}
         </>
       )}
       {MoviesAPI.map((api) => (
         <div>
-          {" "}
-          <Template key={api.id} url={api.url} text={api.text} />{" "}
+         
+          <Template key={api.id} url={api.url} text={api.text} />
         </div>
       ))}
       {SeriesAPI.map((api) => (
         <div>
-          {" "}
-          <SeriesTemplate key={api.id} url={api.url} text={api.text} />{" "}
+         
+          <SeriesTemplate key={api.id} url={api.url} text={api.text} />
         </div>
       ))}
       {toggleForm && <> {showLogin ? <Login /> : <SignUp />}</>}

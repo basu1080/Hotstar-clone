@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Movies.css";
 import { useSelector } from "react-redux";
 import ImageSlider from "../Home/ImageSlider";
-
+import ErrorModal from "../UI/ErrorModal";
 import Login from "../Auth/Login";
 import useHttp from "../../hooks/useHttp";
 import SkeletonForBanner from "../UI/SkeletonForBanner";
@@ -21,6 +21,9 @@ const Movies = () => {
     fetchRequest(process.env.REACT_APP_BANNER_MOVIES_URL);
   }, []);
 
+  if(error!==''){
+    return <ErrorModal msg="loading movies failed, please try again later"/>
+  }
   return (
     <div className="movies">
       {loading ? (

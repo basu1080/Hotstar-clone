@@ -41,7 +41,7 @@ const Movie = (props) => {
     onMouseLeave={hideDetails}
     onClick={viewDetail}
     >
-        <img src={image} alt={'movie/series image'}/>
+        <img src={image} alt={'movie/series image'} loading="lazy"/>
         {showDetails && <MovieDetails banner={false} movie={props.movie} series={props.series}/>}
         
 

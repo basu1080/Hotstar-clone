@@ -6,7 +6,7 @@ import ImageSlider from "../Home/ImageSlider";
 import Login from "../Auth/Login";
 
 import SignUp from "../Auth/SignUp";
-
+import ErrorModal from "../UI/ErrorModal";
 import SkeletonForBanner from "../UI/SkeletonForBanner";
 import useHttp from "../../hooks/useHttp";
 import { SeriesAPI } from "../API/Urls";
@@ -19,8 +19,12 @@ const Series = () => {
 
   useEffect(() => {
     fetchRequest(process.env.REACT_APP_NOW_PLAYING_URL);
+    
   }, []);
 
+  if(error!==''){
+    return <ErrorModal msg="Loading series failed, please try again later!"/>
+  }
   return (
     <div className="series">
       {loading ? (

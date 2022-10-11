@@ -8,10 +8,14 @@ import MoviesPage from './pages/MoviesPage';
 import SeriesPage from './pages/SeriesPage';
 import ResultsPage from './pages/ResultsPage';
 import PageNotFound from './pages/PageNotFound';
+import RequiredAuth from './pages/RequiredAuth';
+import {useSelector} from 'react-redux'
 
 
 
 function App() {
+
+
 
  
   return (
@@ -31,7 +35,9 @@ function App() {
           <DetailsPage />
         </Route>
         <Route path="/search/:movie_series">
+          <RequiredAuth>
           <ResultsPage />
+          </RequiredAuth>
         </Route>
         <Route path="*">
           <PageNotFound />
@@ -40,6 +46,7 @@ function App() {
         
       </Switch>
       
+  
     </div>
   );
 }

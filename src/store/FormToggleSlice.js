@@ -9,6 +9,7 @@ const formToggleSlice = createSlice({
         },
         toggleLoginForm(state, action){
             state.toggleForm=!state.toggleForm
+            console.log('exc', state.toggleForm)
         }
     }
 })

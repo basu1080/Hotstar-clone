@@ -3,6 +3,7 @@ import MoviesContainer from '../Layout/MoviesContainer';
 import Wrapper from '../Layout/Wrapper';
 import SkeletonContainer from '../UI/SkeletonContainer';
 import useHttp from '../../hooks/useHttp';
+import ErrorModal from '../UI/ErrorModal';
 const SeriesTemplate = ({url, text}) => {
    
    
@@ -13,6 +14,10 @@ const SeriesTemplate = ({url, text}) => {
   useEffect(() => {
     fetchRequest(url);
   }, [fetchRequest, url]);
+
+  if(error!==''){
+    return <ErrorModal msg={`Loading ${text} series failed, please try again later!`}/>
+  }
   return (
     <Wrapper>
       {loading ? (

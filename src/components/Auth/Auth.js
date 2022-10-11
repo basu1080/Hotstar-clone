@@ -41,7 +41,7 @@ const Auth = ({ isLogin, url, successMsg }) => {
     dispatch(formToggleSliceActions.toggleModal());
   };
 
-  console.log(emailHasError, passwordHasError)
+
   const statusError = "";
 
   const submitHandler = (e) => {
@@ -52,7 +52,7 @@ const Auth = ({ isLogin, url, successMsg }) => {
     }
   };
 
-  console.log(status)
+
  
 
   return (

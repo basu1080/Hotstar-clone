@@ -20,7 +20,7 @@ const Header = () => {
 
   const isLogged = useSelector((state) => state.auth.isLogged);
 
-  console.log(isLogged)
+
   const toggleModal = (e) => {
     setShowList((prev) => !prev);
     dispatch(formToggleSliceActions.toggleLoginForm())
